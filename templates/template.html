@@ -1,0 +1,72 @@
+<!doctype html>
+
+<head>
+	<title>pokestats</title>
+
+	<style>
+
+		header { width: 80%; padding: 0 10%; }
+		h1 { text-align: center; }
+		input { width: 50%; height: 38px; border-radius: 19px; text-align: center; margin: 15px 25%; font-size: 30px; }
+		input:focus { outline: none; }
+
+		#pokewrap { width: 95%; padding: 0 2.5%; }
+		#pokewrap > * { padding: 5px; }
+		#stats { float: left; width: 48%; }
+		#more { float: right; width: 48%; }
+
+		#group > * { float: left; }
+		#abilities { list-style: none; background-color: white; padding: 0 10px; }
+		#abilities span { padding: 0 5px; }
+
+		#evolutions * { padding: 0; margin: 0; }
+		#EVs { padding: 15px 0; }
+
+		#types > table ul
+		{
+			line-height: 20px;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+
+		function search(e)
+		{
+			var unicode = e.keyCode ? e.keyCode : e.charCode;
+			if (unicode==13)
+				window.location = "/" + document.getElementById('search').value
+		}
+
+	</script>
+
+</head>
+
+<body>
+
+<header>
+	<input id="search" type="text" name="pokename" placeholder="{{name}}" onkeyup="search(event)" />
+</header>
+
+<div id="pokewrap">
+	<div id="types">{{types}}</div>
+	<div id="stats">{{stats}}</div>
+	<div id="more">
+		<div id="group">
+			<div id="type">{{type}}</div>
+			<div id="abilities">{{abilities}}</div>
+			<div id="catchRate">{{catchRate}}</div>
+			<div style="clear:both;"></div>
+		<div>
+		<div id="evolutions">
+			<h4>Evolutions:</h4>
+			<p>{{evolutions}}</p>
+		</div>
+		<div id="EVs">{{EVs}}</div>
+		<div id="locs">{{locs}}</div>
+	</div>
+</div>
+
+</body>
+
+</html>
