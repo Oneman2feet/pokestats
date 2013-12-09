@@ -70,7 +70,7 @@ def getCatchRate(site):
 
 def getEvolutions(site):
     try:
-        evolutions = site.find_all("p",limit=2)[1]
+        evolutions = site.find_all("p",limit=3)[2]
         return filterLinks(evolutions)
     except:
         return "load request failed"
