@@ -4,7 +4,7 @@ import re
 
 def loadSite(name):
     try:
-        return BeautifulSoup(urllib2.urlopen("http://bulbapedia.bulbagarden.net/wiki/"+name+"_%28Pok%C3%A9mon%29").read(),"html5lib").find(id="mw-content-text")
+        return BeautifulSoup(urllib2.urlopen("http://bulbapedia.bulbagarden.net/wiki/"+name+"_%28Pok%C3%A9mon%29").read(),"html5lib") #.find(id="mw-content-text")
     except:
         return False
 
@@ -26,38 +26,61 @@ def getInfo(name):
     return info
 
 def getTypes(site):
-
-    types = site.find(text=re.compile('Under normal battle conditions in Generation VI*'))
-    types = types.parent.parent.parent.parent.parent.parent.parent.parent.parent
-    return removeLinks(types)
+    try:
+        types = site.find(text=re.compile('Under normal battle conditions in Generation VI*'))
+        types = types.parent.parent.parent.parent.parent.parent.parent.parent.parent
+        return removeLinks(types)
+    except:
+        return "load request failed"
 
 def getStats(site):
-    stats = site.find(href="/wiki/Stats",title="Stats").parent.parent.parent.parent
-    return removeLinks(stats)
+    try:
+        stats = site.find(href="/wiki/Stats",title="Stats").parent.parent.parent.parent
+        return removeLinks(stats)
+    except:
+        return "load request failed"
 
 def getLocs(site):
-    locs = site.find_all("small",text="Generation V")[1].parent.parent.parent.parent
-    return removeLinks(locs)
+    try:
+        locs = site.find_all("small",text="Generation V")[1].parent.parent.parent.parent
+        return removeLinks(locs)
+    except:
+        return "load request failed"
 
 def getType(site):
-    myType = site.find("a",title="Type").parent.parent.parent
-    return removeLinks(myType)
+    try:
+        myType = site.find("a",title="Type").parent.parent.parent
+        return removeLinks(myType)
+    except:
+        return "load request failed"
 
 def getEVs(site):
-    EVs = site.find("a",title=re.compile("List of Pok.mon by effort value yield")).parent.parent.parent
-    return removeLinks(EVs)
+    try:
+        EVs = site.find("a",title=re.compile("List of Pok.mon by effort value yield")).parent.parent.parent
+        return removeLinks(EVs)
+    except:
+        return "load request failed"
 
 def getCatchRate(site):
-    catchRate = site.find("a",title="Catch rate").parent.parent
-    return removeLinks(catchRate)
+    try:
+        catchRate = site.find("a",title="Catch rate").parent.parent
+        return removeLinks(catchRate)
+    except:
+        return "load request failed"
 
 def getEvolutions(site):
-    evolutions = site.find_all("p",limit=2)[1]
-    return filterLinks(evolutions)
+    try:
+        evolutions = site.find_all("p",limit=2)[1]
+        return filterLinks(evolutions)
+    except:
+        return "load request failed"
 
 def getAbilities(site):
-    abilities = site.find("a",title="Ability").parent.parent.parent
-    return removeLinks(removeTables(abilities))
+    try:
+        abilities = site.find(title="Ability").parent.parent.parent
+        return removeLinks(removeTables(abilities))
+    except:
+        return "load request failed"
 
 def filterLinks(html):
     for tag in html.find_all("a"):
