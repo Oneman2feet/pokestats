@@ -59,7 +59,9 @@
 			<div style="clear:both;"></div>
 		<div>
 		<div id="evolutions">
+			{% if evolutions!="load request failed" and evolutions!="" %}
 			<h4>Evolutions:</h4>
+			{% endif %}
 			<p>{{evolutions}}</p>
 		</div>
 		<div id="EVs">{{EVs}}</div>
