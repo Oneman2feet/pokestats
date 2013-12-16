@@ -34,10 +34,7 @@
 		{
 			var unicode = e.keyCode ? e.keyCode : e.charCode;
 			if (unicode==13)
-			{
-				alert(document.getElementById('search').value)
 				window.location = "/" + document.getElementById('search').value.replace(' ','_')
-			}
 		}
 
 	</script>
