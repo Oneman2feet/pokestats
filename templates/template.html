@@ -6,7 +6,6 @@
 	<style>
 
 		header { width: 80%; padding: 0 10%; }
-		h1 { text-align: center; }
 		input { width: 50%; height: 38px; border-radius: 19px; text-align: center; margin: 15px 25%; font-size: 30px; }
 		input:focus { outline: none; }
 
@@ -35,7 +34,10 @@
 		{
 			var unicode = e.keyCode ? e.keyCode : e.charCode;
 			if (unicode==13)
-				window.location = "/" + document.getElementById('search').value
+			{
+				alert(document.getElementById('search').value)
+				window.location = "/" + document.getElementById('search').value.replace(' ','_')
+			}
 		}
 
 	</script>
@@ -45,7 +47,7 @@
 <body>
 
 <header>
-	<input id="search" type="text" name="pokename" placeholder="{{name}}" onkeyup="search(event)" />
+	<input id="search" type="text" name="pokename" placeholder="{{name.replace('_',' ')}}" onkeyup="search(event)" />
 </header>
 
 <div id="pokewrap">

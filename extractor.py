@@ -4,9 +4,9 @@ import re
 
 def loadSite(name):
     try:
-        return BeautifulSoup(urllib2.urlopen("http://bulbapedia.bulbagarden.net/wiki/"+name+"_%28Pok%C3%A9mon%29").read(),"html5lib") #.find(id="mw-content-text")
+        return BeautifulSoup(urllib2.urlopen("http://bulbapedia.bulbagarden.net/wiki/"+name+"_%28Pok%C3%A9mon%29").read(),"html5lib");
     except:
-        return False
+        return False;
 
 def getInfo(name):
     site = loadSite(name)

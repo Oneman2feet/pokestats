@@ -10,6 +10,7 @@ def main():
 
 @app.route('/<name>')
 def search(name):
+	name = name.replace(' ','_').title()
 	content = extractor.getInfo(name)
 
 	if (content==None):
@@ -24,7 +25,7 @@ def search(name):
 										  ,evolutions=""
 										  ,abilities="")
 
-	return render_template('template.html',name=name.title()
+	return render_template('template.html',name=name
 										  ,types=Markup(content[0])
 										  ,stats=Markup(content[1])
 										  ,locs=Markup(content[2])
